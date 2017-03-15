@@ -32,6 +32,8 @@ export type SJColor = {|
 // This just prevents some mistakes.
 // $Values will make these unnecessary https://github.com/facebook/flow/issues/627
 type BorderPositionEnum = 0 | 1 | 2 | 3;
+type BorderLineCapStyle = 0 | 1 | 2;
+type BorderLineJoinStyle = 0 | 1 | 2;
 type FillTypeEnum = 0 | 1 | 4 | 5;
 type PatternFillTypeEnum = 0 | 1;
 type BlendModeEnum = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
@@ -64,6 +66,14 @@ export type SJBorder = {|
   thickness: number,
 |};
 
+export type SJBorderOptions = {|
+  _class: 'borderOptions',
+  isEnabled: bool,
+  dashPattern: number[],
+  lineCapStyle: BorderLineCapStyle,
+  lineJoinStyle: BorderLineJoinStyle,
+|};
+
 export type SJFill = {|
   _class: 'fill',
   isEnabled: bool,
@@ -92,6 +102,7 @@ export type SJShadow = {|
 
 export type SJStyle = {
   _class: 'style',
+  borderOptions?: SJBorderOptions,
   borders?: SJBorder[],
   shadows?: SJShadow[],
   fills?: SJFill[],
