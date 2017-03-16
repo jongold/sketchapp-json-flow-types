@@ -79,6 +79,7 @@ export type SJFill = {|
   isEnabled: bool,
   color: SJColor,
   fillType: FillTypeEnum,
+  image?: SJFillImage,
   noiseIndex: number,
   noiseIntensity: number,
   patternFillType: PatternFillTypeEnum,
@@ -128,6 +129,18 @@ type ExportOptions = {|
     includedLayerIds: [],
     layerOptions: number,
     shouldTrim: bool
+|};
+
+export type SJFillImage = {|
+  _class: 'MSJSONOriginalDataReference',
+  _ref: string,
+  _ref_class: 'MSImageData',
+  data: {
+    _data: string,
+  },
+  sha1: {
+    _data: string,
+  },
 |};
 
 /*** Layers ***/
