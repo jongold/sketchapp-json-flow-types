@@ -186,6 +186,7 @@ export type SJShapeGroupLayer = {
   //TODO(akp): find a way to restrict this to shape layers with blowing up, i.e.
   //layers?: SJShapeLayer[],
   style: SJStyle,
+  hasClippingMask: bool,
 } & _SJLayerBase;
 
 export type SJShapeLayer = {
