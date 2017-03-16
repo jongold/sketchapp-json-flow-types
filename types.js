@@ -77,7 +77,7 @@ export type SJBorderOptions = {|
 export type SJFill = {|
   _class: 'fill',
   isEnabled: bool,
-  color: SJColor,
+  color?: SJColor,
   fillType: FillTypeEnum,
   image?: SJFillImage,
   noiseIndex: number,
