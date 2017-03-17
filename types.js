@@ -35,7 +35,7 @@ type BorderPositionEnum = 0 | 1 | 2 | 3;
 type BorderLineCapStyle = 0 | 1 | 2;
 type BorderLineJoinStyle = 0 | 1 | 2;
 type FillTypeEnum = 0 | 1 | 4 | 5;
-export type SJPatternFillTypeEnum = 0 | 1 | 2 | 3;
+type PatternFillTypeEnum = 0 | 1 | 2 | 3;
 type BlendModeEnum = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 type LineDecorationTypeEnum = 0 | 1 | 2 | 3;
 type BooleanOperation = -1 | 0 | 1 | 2 | 3;
@@ -80,10 +80,10 @@ export type SJFill = {|
   isEnabled: bool,
   color?: SJColor,
   fillType: FillTypeEnum,
-  image?: SJFillImage,
+  image?: SJImageDataReference,
   noiseIndex: number,
   noiseIntensity: number,
-  patternFillType: SJPatternFillTypeEnum,
+  patternFillType: PatternFillTypeEnum,
   patternTileScale: number,
 |};
 
@@ -132,7 +132,13 @@ type ExportOptions = {|
     shouldTrim: bool
 |};
 
-export type SJFillImage = {|
+type RulerData = {|
+  _class: 'rulerData',
+  base: 0,
+  guides: number[],
+|};
+
+export type SJImageDataReference = {|
   _class: 'MSJSONOriginalDataReference',
   _ref: string,
   _ref_class: 'MSImageData',
@@ -147,7 +153,7 @@ export type SJFillImage = {|
 // '{0, 1}'
 type PointString = string;
 
-type SJPoint = {|
+type SJCurvePoint = {|
   _class: 'curvePoint',
   cornerRadius: number,
   curveFrom: PointString,
@@ -161,7 +167,7 @@ type SJPoint = {|
 export type SJPath = {|
   _class: 'path',
   isClosed: bool,
-  points: SJPoint[],
+  points: SJCurvePoint[],
 |}
 
 /*** Layers ***/
