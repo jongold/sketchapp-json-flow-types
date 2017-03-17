@@ -35,10 +35,11 @@ type BorderPositionEnum = 0 | 1 | 2 | 3;
 type BorderLineCapStyle = 0 | 1 | 2;
 type BorderLineJoinStyle = 0 | 1 | 2;
 type FillTypeEnum = 0 | 1 | 4 | 5;
-type PatternFillTypeEnum = 0 | 1;
+export type SJPatternFillTypeEnum = 0 | 1 | 2 | 3;
 type BlendModeEnum = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 type LineDecorationTypeEnum = 0 | 1 | 2 | 3;
 type BooleanOperation = -1 | 0 | 1 | 2 | 3;
+type CurveMode = 0 | 1 | 2 | 3 | 4;
 /*
 const ResizingType = {
   Stretch: 0,
@@ -82,7 +83,7 @@ export type SJFill = {|
   image?: SJFillImage,
   noiseIndex: number,
   noiseIntensity: number,
-  patternFillType: PatternFillTypeEnum,
+  patternFillType: SJPatternFillTypeEnum,
   patternTileScale: number,
 |};
 
@@ -143,6 +144,26 @@ export type SJFillImage = {|
   },
 |};
 
+// '{0, 1}'
+type PointString = string;
+
+type SJPoint = {|
+  _class: 'curvePoint',
+  cornerRadius: number,
+  curveFrom: PointString,
+  curveMode: CurveMode,
+  curveTo: PointString,
+  hasCurveFrom: bool,
+  hasCurveTo: bool,
+  point: PointString,
+|}
+
+export type SJPath = {|
+  _class: 'path',
+  isClosed: bool,
+  points: SJPoint[],
+|}
+
 /*** Layers ***/
 
 type _SJLayerBase = {
@@ -167,7 +188,18 @@ type _SJLayerBase = {
   resizingType?: ResizingType,
 } & SJIDBase;
 
-export type SJLayer = SJTextLayer | SJGroupLayer | SJShapeGroupLayer | SJShapeLayer;
+export type SJLayer = SJArtboardLayer | SJTextLayer | SJGroupLayer | SJShapeGroupLayer | SJShapeLayer;
+
+export type SJArtboardLayer = {
+  _class: 'artboard',
+  frame: SJRect,
+  backgroundColor: SJColor,
+  hasBackgroundColor: bool,
+  horizontalRulerData?: RulerData,
+  verticalRulerData?: RulerData,
+  includeBackgroundColorInExport?: bool,
+  includeInCloudUpload?: bool,
+} & _SJLayerBase;
 
 export type SJTextLayer = {
   _class: 'text',
