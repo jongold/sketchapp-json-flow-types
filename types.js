@@ -263,7 +263,7 @@ export type SJShapeGroupLayer = {
 export type SJShapeLayer = {
   // TODO(akp): split these into types
   _class: 'rectangle' | 'oval' | 'shapePath',
-} & SJIDBase;
+} & _SJLayerBase;
 
 /*** Dumb key value coded types. Hopefully sketch will kill this off at some point **/
 
